@@ -1,10 +1,11 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'cad-usuarios-web',
+    title: 'Cadastro de Usuários',
     htmlAttrs: {
       lang: 'en'
     },
@@ -23,8 +24,12 @@ export default {
   css: [
   ],
 
+  loading: '~/components/Loading.vue',
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/api',
+    '@/plugins/vuelidate'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -47,9 +52,22 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    'cookie-universal-nuxt'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, {}) {
+      config.node = {
+          fs: 'empty'
+      }
+    }
+  },
+
+  server: {
+    port: 3000,
+    host: '0.0.0.0'
   }
 }

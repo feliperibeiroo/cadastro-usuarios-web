@@ -1,17 +1,12 @@
 <template>
-    <b-modal @ok="modalOk" scrollable v-model="modalShow" title="Cadastro de Usuário">
+    <b-modal @ok="modalOK" scrollable v-model="modalShow" title="Cadastro de Usuário">
         <span class="box-entrada">
             <label for="nome">Nome</label>
-            <b-form-input :state="nomeValidation.value" aria-describedby="input-live-feedback" v-model="usuario.nome" praceholder="Nome" type="text">
-            </b-form-input>
-            <b-form-invalid-feedback id="input-live-feedback">
-                {{ nomeValidation.text }}
-            </b-form-invalid-feedback>
-
+            <b-form-input v-model="usuario.nome" praceholder="Nome" type="text"></b-form-input>
         </span>
         <span class="box-entrada">
             <label for="email">Email</label>
-            <b-form-input  v-model="usuario.email" id="email" type="text"></b-form-input>
+            <b-form-input v-model="usuario.email" id="email" type="text"></b-form-input>
         </span>
         <span class="box-entrada">
             <label for="cpf">CPF</label>
@@ -49,42 +44,31 @@
             <label for="complemento">Complemento</label>
             <b-form-input v-model="usuario.complemento" id="complemento" type="text"></b-form-input>
         </span>
-        <span class="box-entrada">
-            <label for="complemento">Senha</label>
-            <b-form-input v-model="usuario.senha" id="senha" type="text"></b-form-input>
-        </span>
-        <span class="box-entrada">
-            <label for="senha-confirmacao">Digite sua senha novamente</label>
-            <b-form-input v-model="senhaConfirmacao" id="senha-confirmacao" type="text"></b-form-input>
-        </span>
     </b-modal>
 </template>
 <script lang="ts">
 import Vue from 'vue'
 import Usuario from '~/models/Usuario'
-import { mapGetters, mapActions } from 'vuex'
-
+import { mapGetters } from 'vuex'
 export default Vue.extend({
     data() {
         return {
-            usuario: {} as Usuario,
-            senhaConfirmacao: '',
             modalShow: false
         }
     },
-    
+    computed: {
+        ...mapGetters(['usuario'])
+    },
     methods: {
-        ...mapActions(['cadastrarUsuario']),
-        modalOk() {
-            this.cadastrarUsuario(this.usuario)
-        },
-        showModal() {
-            this.usuario = {}
-            this.modalShow = true
-        },
-        hideModal() {
-            this.modalShow = false
-        },
+      showModal() {
+        this.modalShow = true
+      },
+      hideModal() {
+        this.modalShow = false
+      },
+      modalOk() {
+          
+      }
     }
 })
 </script>

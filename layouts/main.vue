@@ -1,7 +1,8 @@
 <template>
-  <v-app>
+  <div>
     <Nuxt />
-  </v-app>
+    <Message ref="message"/>
+  </div>
 </template>
 
 <script lang="ts">

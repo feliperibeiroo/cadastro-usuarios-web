@@ -1,16 +1,17 @@
 export default class {
-    nome!: String;
-    email!: String;
-    endereco!: {
-        pais: String;
-        estado: String;
-        municipio: String;
-        cep: Number;
-        rua: String;
-        numero: Number;
-        complemento: String;
+    id?: string;
+    nome?: string;
+    email?: string;
+    endereco?: {
+        pais?: string;
+        estado?: string;
+        municipio?: string;
+        cep?: string;
+        rua?: string;
+        numero?: string;
+        complemento?: string;
     }
-    cpf!: String
-    pis!: String
-    senha!: String
+    cpf?: string
+    pis?: string
+    senha?: string
 }
