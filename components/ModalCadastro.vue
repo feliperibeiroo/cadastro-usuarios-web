@@ -2,10 +2,10 @@
     <b-modal @ok="modalOk" scrollable v-model="modalShow" title="Cadastro de Usuário">
         <span class="box-entrada">
             <label for="nome">Nome</label>
-            <b-form-input :state="nomeValidation.value" aria-describedby="input-live-feedback" v-model="usuario.nome" praceholder="Nome" type="text">
+            <b-form-input :state="nomeValidator.value" aria-describedby="input-live-feedback" v-model="usuario.nome" praceholder="Nome" type="text">
             </b-form-input>
             <b-form-invalid-feedback id="input-live-feedback">
-                {{ nomeValidation.text }}
+                {{ nomeValidator.message }}
             </b-form-invalid-feedback>
 
         </span>
@@ -64,6 +64,11 @@ import Vue from 'vue'
 import Usuario from '~/models/Usuario'
 import { mapGetters, mapActions } from 'vuex'
 
+interface validator {
+    value: boolean | null
+    message: string
+}
+
 export default Vue.extend({
     data() {
         return {
@@ -84,6 +89,90 @@ export default Vue.extend({
         },
         hideModal() {
             this.modalShow = false
+        },
+        nomeValidator (): validator {
+            return this.usuario.nome===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.nome==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    this.usuario.nome?.match(/\w+\s+\w+/)==null ?
+                        { value: false, message: 'Insira seu nome completo' }:
+                        { value: true, message: 'ok' }
+        },
+        emailValidator (): validator {
+            return this.usuario.email===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.email==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    this.usuario.email?.match(/\w+@\w+\.\w+/)==null ?
+                        { value: false, message: 'Insira um email válido' }:
+                        { value: true, message: 'ok' }
+        },
+        paisValidator (): validator {
+            return this.usuario.endereco?.pais===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.endereco?.pais==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    { value: true, message: 'ok' }
+        },
+        estadoValidator (): validator {
+            return this.usuario.endereco?.estado===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.endereco?.estado==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    { value: true, message: 'ok' }
+        },
+        municipioValidator (): validator {
+            return this.usuario.endereco?.municipio===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.endereco?.municipio==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    { value: true, message: 'ok' }
+        },
+        cepValidator (): validator {
+            return this.usuario.endereco?.cep===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.endereco?.cep==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    this.usuario.endereco.cep.length!=9 ?
+                        { value: false, message: 'CEP incompleto' } :
+                        { value: true, message: 'ok' }
+
+        },
+        ruaValidator (): validator {
+            return (this.usuario.nome==="") ? 
+                {value: false, message: 'Campo obrigatório'} :
+                (this.usuario.nome)===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
+        },
+        numeroValidator (): validator {
+            return this.usuario.endereco?.numero==="" ? 
+                {value: false, message: 'Campo obrigatório'} :
+                this.usuario.endereco?.numero===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
+        },
+        cpfValidator (): validator {
+            return this.usuario.cpf==="" ? 
+                {value: false, message: 'Campo obrigatório'} :
+                this.usuario.cpf===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
+        },
+        pisValidator (): validator {
+            return this.usuario.pis==="" ? 
+                {value: false, message: 'Campo obrigatório'} :
+                this.usuario.pis===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
+        },
+        senhaValidator (): validator {
+            return this.usuario.pis==="" ? 
+                {value: false, message: 'Campo obrigatório'} :
+                this.usuario.pis===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
         },
     }
 })
