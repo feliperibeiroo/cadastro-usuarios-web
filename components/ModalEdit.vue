@@ -1,74 +1,316 @@
 <template>
-    <b-modal @ok="modalOK" scrollable v-model="modalShow" title="Cadastro de Usuário">
+    <b-modal 
+        @ok="modalOk"
+        scrollable 
+        v-model="modalShow"
+        cancel-title="Cancelar"
+        title="Cadastro de Usuário"
+        :ok-disabled="!okValidator.value"
+    >
         <span class="box-entrada">
             <label for="nome">Nome</label>
-            <b-form-input v-model="usuario.nome" praceholder="Nome" type="text"></b-form-input>
+            <b-form-input 
+                :state="nomeValidator.value" 
+                v-model="usuario.nome"
+                aria-describedby="nome-feedback"
+                placeholder="Nome" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="nome-feedback">
+                {{ nomeValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="email">Email</label>
-            <b-form-input v-model="usuario.email" id="email" type="text"></b-form-input>
+            <b-form-input 
+                :state="emailValidator.value" 
+                v-model="usuario.email"
+                aria-describedby="email-feedback"
+                placeholder="Email" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="email-feedback">
+                {{ emailValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="cpf">CPF</label>
-            <b-form-input v-model="usuario.cpf" id="cpf" type="text"></b-form-input>
+            <b-form-input 
+                :state="cpfValidator.value" 
+                v-model="usuario.cpf"
+                v-mask="'###.###.###-##'"
+                aria-describedby="cpf-feedback"
+                placeholder="CPF" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="cpf-feedback">
+                {{ cpfValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="pis">PIS</label>
-            <b-form-input v-model="usuario.pis" id="pis" type="text"></b-form-input>
+            <b-form-input 
+                :state="pisValidator.value" 
+                v-model="usuario.pis"
+                v-mask="'####################'"
+                aria-describedby="pis-feedback"
+                placeholder="PIS" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="pis-feedback">
+                {{ pisValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="pais">País</label>
-            <b-form-input v-model="usuario.pais" id="pais" type="text"></b-form-input>
+            <b-form-input 
+                :state="paisValidator.value" 
+                v-model="usuario.pais"
+                aria-describedby="pais-feedback"
+                placeholder="País" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="pais-feedback">
+                {{ paisValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="estado">Estado</label>
-            <b-form-input v-model="usuario.estado" id="estado" type="text"></b-form-input>
+            <b-form-input 
+                :state="estadoValidator.value" 
+                v-model="usuario.estado"
+                aria-describedby="estado-feedback"
+                placeholder="Estado" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="estado-feedback">
+                {{ estadoValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="municipio">Município</label>
-            <b-form-input v-model="usuario.municipio" id="municipio" type="text"></b-form-input>
+            <b-form-input 
+                :state="municipioValidator.value" 
+                v-model="usuario.municipio"
+                aria-describedby="municipio-feedback"
+                placeholder="Municipio" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="municipio-feedback">
+                {{ municipioValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="cep">CEP</label>
-            <b-form-input v-model="usuario.cep" id="cep" type="text"></b-form-input>
+            <b-form-input 
+                :state="cepValidator.value" 
+                v-model="usuario.cep"
+                v-mask="'#####-###'"
+                aria-describedby="cep-feedback"
+                placeholder="CEP" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="cep-feedback">
+                {{ cepValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="numero">Número</label>
-            <b-form-input v-model="usuario.numero" id="numero" type="text"></b-form-input>
+            <b-form-input 
+                :state="numeroValidator.value" 
+                v-model="usuario.numero"
+                v-mask="'##########'"
+                aria-describedby="numero-feedback"
+                placeholder="Número" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="numero-feedback">
+                {{ numeroValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="rua">Rua</label>
-            <b-form-input v-model="usuario.rua" id="rua" type="text"></b-form-input>
+            <b-form-input 
+                :state="ruaValidator.value" 
+                v-model="usuario.rua"
+                aria-describedby="rua-feedback"
+                placeholder="Rua" 
+                type="text"
+            ></b-form-input>
+            <b-form-invalid-feedback id="rua-feedback">
+                {{ ruaValidator.message }}
+            </b-form-invalid-feedback>
         </span>
         <span class="box-entrada">
             <label for="complemento">Complemento</label>
-            <b-form-input v-model="usuario.complemento" id="complemento" type="text"></b-form-input>
+            <b-form-input 
+                v-model="usuario.complemento" 
+                id="complemento"
+                placeholder="Complemento"
+                type="text"
+            ></b-form-input>
         </span>
     </b-modal>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters, mapActions } from 'vuex'
+import * as Requests from '@/models/Requests'
+import * as Responses from '@/models/Responses'
+import UsuarioForm from '~/models/UsuarioForm'
 import Usuario from '~/models/Usuario'
-import { mapGetters } from 'vuex'
+
+interface validator {
+    value: boolean | null
+    message: string
+}
+
 export default Vue.extend({
     data() {
         return {
+            usuario: {} as Usuario,
+            senhaConfirmacao: undefined,
             modalShow: false
         }
     },
-    computed: {
-        ...mapGetters(['usuario'])
-    },
+    
     methods: {
-      showModal() {
-        this.modalShow = true
-      },
-      hideModal() {
-        this.modalShow = false
-      },
-      modalOk() {
-          
-      }
+        ...mapActions(['cadastrarUsuario']),
+        modalOk() {
+            let usuario = {
+                nome: this.usuario.nome,
+                email: this.usuario.email,
+                endereco: {
+                    pais: this.usuario.pais,
+                    estado: this.usuario.estado,
+                    municipio: this.usuario.municipio,
+                    cep: this.usuario.cep,
+                    rua: this.usuario.rua,
+                    numero: this.usuario.numero,
+                    complemento: this.usuario.complemento,
+                },
+                cpf: this.usuario.cpf,
+                pis: this.usuario.pis
+            } as Requests.UsuarioRequest
+            this.cadastrarUsuario(usuario)
+        },
+        showModal() {
+            this.usuario = {}
+            let usuario = this.usuarioFromStore
+
+            this.usuario.nome = usuario.nome
+            this.usuario.email = usuario.email
+            this.usuario.pais = usuario.endereco.pais
+            this.usuario.estado = usuario.endereco.estado
+            this.usuario.municipio = usuario.endereco.municipio
+            this.usuario.cep = usuario.endereco.cep
+            this.usuario.rua = usuario.endereco.rua
+            this.usuario.numero = usuario.endereco.numero
+            this.usuario.complemento = usuario.endereco.complemento
+            this.usuario.cpf = usuario.cpf
+            this.usuario.pis = usuario.pis
+            this.modalShow = true
+        },
+        hideModal() {
+            this.modalShow = false
+        },
+    },
+
+    computed: {
+        ...mapGetters({ usuarioFromStore: 'usuario' }),
+        nomeValidator (): validator {
+            return this.usuario.nome===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.nome=="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    this.usuario.nome?.match(/\w+\s+\w+/)==null ?
+                        { value: false, message: 'Insira seu nome completo' }:
+                        { value: true, message: 'ok' }
+        },
+        emailValidator (): validator {
+            return this.usuario.email===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.email==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    this.usuario.email?.match(/\w+@\w+\.\w+/)==null ?
+                        { value: false, message: 'Insira um email válido' }:
+                        { value: true, message: 'ok' }
+        },
+        paisValidator (): validator {
+            return this.usuario.pais===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.pais==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    { value: true, message: 'ok' }
+        },
+        estadoValidator (): validator {
+            return this.usuario.estado===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.estado==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    { value: true, message: 'ok' }
+        },
+        municipioValidator (): validator {
+            return this.usuario.municipio===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.municipio==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    { value: true, message: 'ok' }
+        },
+        cepValidator (): validator {
+            return this.usuario.cep===undefined ? 
+                {value: null, message: ''} :
+                this.usuario.cep==="" ?
+                    {value: false, message: 'Campo obrigatório'}:
+                    this.usuario.cep?.length!=9 ?
+                        { value: false, message: 'CEP incompleto' } :
+                        { value: true, message: 'ok' }
+
+        },
+        ruaValidator (): validator {
+            return (this.usuario.rua==="") ? 
+                {value: false, message: 'Campo obrigatório'} :
+                (this.usuario.rua)===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
+        },
+        numeroValidator (): validator {
+            return this.usuario.numero==="" ? 
+                {value: false, message: 'Campo obrigatório'} :
+                this.usuario.numero===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
+        },
+        cpfValidator (): validator {
+            return this.usuario.cpf==="" ? 
+                {value: false, message: 'Campo obrigatório'} :
+                this.usuario.cpf===undefined ?
+                    { value: null, message: '' }:
+                    this.usuario.cpf?.length!=14 ?
+                        { value: false, message: 'Insira o CPF completo' }:
+                        { value: true, message: 'ok' }
+        },
+        pisValidator (): validator {
+            return this.usuario.pis==="" ? 
+                {value: false, message: 'Campo obrigatório'} :
+                this.usuario.pis===undefined ?
+                    { value: null, message: '' }:
+                    { value: true, message: 'ok' }
+        },
+        okValidator (): validator {
+            return this.nomeValidator.value &&
+                this.emailValidator.value &&
+                this.paisValidator.value &&
+                this.estadoValidator.value &&
+                this.municipioValidator.value &&
+                this.cepValidator.value &&
+                this.ruaValidator.value &&
+                this.numeroValidator.value &&
+                this.cpfValidator.value &&
+                this.pisValidator.value ?
+                    { value: true, message: '' }:
+                    { value: false, message: '' }
+        }
     }
 })
 </script>
