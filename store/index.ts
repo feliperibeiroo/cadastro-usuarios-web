@@ -29,7 +29,9 @@ export const actions: ActionTree<RootState, RootState> = {
     .then( (resp: AxiosResponse) => {
       (this as any).$cookies.set('token', resp?.data?.token)
       if (resp?.status==200) {
-        window.$nuxt.$router.push('/')
+        if (resp?.data?.token) {
+          window.$nuxt.$router.push('/')
+        }
       }
       return resp
     })
