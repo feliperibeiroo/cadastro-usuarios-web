@@ -18,8 +18,9 @@
             <template #button-content>
               <em>Perfil</em>
             </template>
-            <b-dropdown-item @click="editarPerfil" href="#">Editar perfil</b-dropdown-item>
-            <b-dropdown-item href="#">Alterar Senha</b-dropdown-item>
+            <b-dropdown-item @click="editarPerfil">Editar perfil</b-dropdown-item>
+            <b-dropdown-item @click="removerUsuario">Remover Usuário</b-dropdown-item>
+            <b-dropdown-item @click="alterarSenha">Alterar Senha</b-dropdown-item>
             <b-dropdown-item @click="sair" href="#">Sair</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -32,6 +33,7 @@
       </div>
     </div>
     <ModalEdit ref="modal-edit"/>
+    <ModalSenha ref="modal-senha"/>
   </div>
 </template>
 
@@ -47,15 +49,27 @@ export default Vue.extend({
     await this.getUsuario();
   },
   methods: {
-    ...mapActions(['getUsuario', 'limparUsuario']),
+    ...mapActions(['deleteUsuario', 'getUsuario', 'limparUsuario']),
+
     editarPerfil() {
       (this.$refs['modal-edit'] as any).showModal();
     },
+
+    alterarSenha() {
+      (this.$refs['modal-senha'] as any).showModal();
+    },
+
+    async removerUsuario() {
+      await this.deleteUsuario();
+      this.sair();
+    },
+
     sair() {
       this.limparUsuario();
       (this as any).$cookies.remove('token')
       this.$nuxt.$router.push('/login')
     }
+
   }
 })
 </script>

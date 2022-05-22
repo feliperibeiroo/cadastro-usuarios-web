@@ -216,7 +216,8 @@ export default Vue.extend({
                     complemento: this.usuario.complemento,
                 },
                 cpf: this.usuario.cpf,
-                pis: this.usuario.pis
+                pis: this.usuario.pis,
+                senha: this.usuario.senha
             } as Requests.UsuarioRequest
             this.cadastrarUsuario(usuario)
         },

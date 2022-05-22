@@ -10,7 +10,7 @@
       </div>
       <div class="form-login">
         <span class="email">
-          <label for="email_pis">Email ou PIS</label>
+          <label for="email_pis">Email, CPF ou PIS</label>
           <b-form-input @keydown.enter="fazerLogin" v-model="loginDTO.user" id="email_pis" type="text"></b-form-input>
         </span>
         <span class="senha">

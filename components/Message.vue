@@ -27,6 +27,30 @@ export default Vue.extend({
     this.$nuxt.$on('userCreated', () => {
       this.showMessage('Usuário cadastrado com sucesso', 'success')
     })
+    this.$nuxt.$on('userNotCreated', () => {
+      this.showMessage('CPF, PIS ou email já possui usuário cadastrado', 'danger')
+    })
+    this.$nuxt.$on('userEdited', () => {
+      this.showMessage('Usuário editado com sucesso', 'success')
+    })
+    this.$nuxt.$on('userNotEdited', () => {
+      this.showMessage('Falha ao editar usuário', 'danger')
+    })
+    this.$nuxt.$on('userRemoved', () => {
+      this.showMessage('Usuário removido com sucesso', 'success')
+    })
+    this.$nuxt.$on('userNotRemoved', () => {
+      this.showMessage('Falha ao remover usuário', 'danger')
+    })
+    this.$nuxt.$on('passwordChanged', () => {
+      this.showMessage('Senha alterada com sucesso', 'success')
+    })
+    this.$nuxt.$on('passwordNotMatch', () => {
+      this.showMessage('Senha anterior não confere', 'danger')
+    })
+    this.$nuxt.$on('passwordNotChanged', () => {
+      this.showMessage('Senha não alterada', 'danger')
+    })
   },
   watch: {
     contador(value) {

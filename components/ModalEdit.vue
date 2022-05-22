@@ -4,7 +4,7 @@
         scrollable 
         v-model="modalShow"
         cancel-title="Cancelar"
-        title="Cadastro de Usuário"
+        title="Editar Cadastro"
         :ok-disabled="!okValidator.value"
     >
         <span class="box-entrada">
@@ -175,7 +175,7 @@ export default Vue.extend({
     },
     
     methods: {
-        ...mapActions(['cadastrarUsuario']),
+        ...mapActions(['editarUsuario']),
         modalOk() {
             let usuario = {
                 nome: this.usuario.nome,
@@ -192,12 +192,12 @@ export default Vue.extend({
                 cpf: this.usuario.cpf,
                 pis: this.usuario.pis
             } as Requests.UsuarioRequest
-            this.cadastrarUsuario(usuario)
+            this.editarUsuario(usuario)
         },
         showModal() {
             this.usuario = {}
             let usuario = this.usuarioFromStore
-
+            this.usuario.id = this.usuario.id
             this.usuario.nome = usuario.nome
             this.usuario.email = usuario.email
             this.usuario.pais = usuario.endereco.pais
@@ -262,7 +262,7 @@ export default Vue.extend({
                 {value: null, message: ''} :
                 this.usuario.cep==="" ?
                     {value: false, message: 'Campo obrigatório'}:
-                    this.usuario.cep?.length!=9 ?
+                    this.usuario.cep?.length<9 ?
                         { value: false, message: 'CEP incompleto' } :
                         { value: true, message: 'ok' }
 

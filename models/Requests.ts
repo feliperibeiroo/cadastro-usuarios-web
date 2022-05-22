@@ -1,10 +1,16 @@
 export const USUARIO_LOGIN:string = '/oauth/login'
 export const USUARIOS:string = '/usuarios'
 export const CADASTRO_USUARIO:string = '/usuarios/cadastrar'
+export const MUDAR_SENHA:string = '/usuarios/mudar-senha'
 
 export interface DataLoginDTO {
   user: string;
   password: string;
+}
+
+export interface MudarSenhaRequest {
+  senhaAnterior: string;
+  senhaNova: string;
 }
 
 export interface UsuarioRequest {

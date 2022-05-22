@@ -1,7 +1,8 @@
+require('dotenv').config()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-  target: 'static',
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -67,7 +68,7 @@ export default {
   },
 
   server: {
-    port: 3000,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    port: process.env.PORT
   }
 }
