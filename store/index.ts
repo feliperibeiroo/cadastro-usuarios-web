@@ -31,6 +31,8 @@ export const actions: ActionTree<RootState, RootState> = {
       if (resp?.status==200) {
         if (resp?.data?.token) {
           window.$nuxt.$router.push('/')
+        } else {
+          window.$nuxt.$emit('internalError')
         }
       }
       return resp

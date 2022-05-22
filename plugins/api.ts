@@ -3,6 +3,7 @@ import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import 'dotenv/config'
 
 const BASE_URL = process.env.BASE_URL as string
+console.log('Base URL:', BASE_URL);
 
 export default function ({ $axios, $cookies}:{ $axios:any, $cookies: any }, inject:any) {
   // Cria uma nova instância axios customizada

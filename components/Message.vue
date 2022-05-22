@@ -51,6 +51,9 @@ export default Vue.extend({
     this.$nuxt.$on('passwordNotChanged', () => {
       this.showMessage('Senha não alterada', 'danger')
     })
+    this.$nuxt.$on('internalError', () => {
+      this.showMessage('Erro ao fazer login', 'danger')
+    })
   },
   watch: {
     contador(value) {
