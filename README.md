@@ -4,10 +4,7 @@ Projeto backend do Cadastro de Usuários.
 
 ## Variáveis de ambiente
 - PORT: Variável que configura a porta a ser usada para servir a aplicação.
-- SECRET: Chave a ser utilizada pelo algorimo SHA-256 para criptografia do token JWT.
-- NODE_ENV: Variável que define o ambiente de execução da aplicação. Assume os valores <b>development</b> e <b>production</b>.
-- POSTGRES_URL: Variável a ser usada apenas em ambiente de desenvolvimento para definição do endereço de acesso do branco de dados Postgres local.
-- POSTGRES_PASSWORD: Variável a ser usada apenas em ambiente de desenvolvimento para definição da senha de acesso do branco de dados Postgres local.
+- BASE_URL: Variável que configura a URL do servidor backend da aplicação. (Em ambiente de desenvolvimento, apontar para localhost)
 
 ## Executar o projeto
 Para executar o projeto faça o clone da aplicação com o seguinte comando:
