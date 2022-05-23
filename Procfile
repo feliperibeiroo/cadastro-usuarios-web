@@ -1,2 +1,2 @@
 release: yarn build
-web: yarn start
+web: BASE_URL=https://cadastro-usuarios-ws.herokuapp.com yarn start
