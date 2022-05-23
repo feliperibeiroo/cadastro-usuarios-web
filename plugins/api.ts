@@ -2,12 +2,11 @@ import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 require('dotenv').config()
 
-const BASE_URL = process.env.BASE_URL
 
-export default function ({ $axios, $cookies}:{ $axios:any, $cookies: any }, inject:any) {
+export default function ({ $axios, $cookies, $config}:{ $axios:any, $cookies: any, $config: any }, inject:any) {
   // Cria uma nova instância axios customizada
   const api = $axios.create({
-    baseURL: BASE_URL
+    baseURL: $config.baseURL
   }) as NuxtAxiosInstance
 
   api.interceptors.request.use((config: AxiosRequestConfig) => {
