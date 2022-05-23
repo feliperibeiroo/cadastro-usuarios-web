@@ -1,12 +1,10 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-require('dotenv').config()
 
-
-export default function ({ $axios, $cookies, $config}:{ $axios:any, $cookies: any, $config: any }, inject:any) {
+export default function ({ $axios, $cookies, $config }:{ $axios:any, $cookies:any, $config:any }, inject:any) {
   // Cria uma nova instância axios customizada
   const api = $axios.create({
-    baseURL: $config.baseURL
+    baseURL: 'https://cadastro-usuarios-ws.herokuapp.com'
   }) as NuxtAxiosInstance
 
   api.interceptors.request.use((config: AxiosRequestConfig) => {
