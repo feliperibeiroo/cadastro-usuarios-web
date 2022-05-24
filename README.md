@@ -1,6 +1,6 @@
 # cadastro-usuarios-web
 
-Projeto backend do Cadastro de Usuários.
+Projeto frontend do Cadastro de Usuários.
 
 ## Tecnologias utilizadas
 - Vue.js
