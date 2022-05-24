@@ -2,6 +2,14 @@
 
 Projeto backend do Cadastro de Usuários.
 
+## Tecnologias utilizadas
+- Vue.js
+- Nuxt
+- Vuex
+- Bootstrap-Vue
+- SASS
+- Axios
+
 ## Variáveis de ambiente
 - PORT: Variável que configura a porta a ser usada para servir a aplicação.
 - BASE_URL: Variável que configura a URL do servidor backend da aplicação. (Em ambiente de desenvolvimento, apontar para localhost)
