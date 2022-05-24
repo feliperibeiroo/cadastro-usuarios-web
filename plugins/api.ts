@@ -1,14 +1,14 @@
 import { NuxtAxiosInstance } from '@nuxtjs/axios'
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export default function ({ $axios, $cookies, $config }:{ $axios:any, $cookies:any, $config:any }, inject:any) {
+export default function (context:any, inject:any) {
   // Cria uma nova instância axios customizada
-  const api = $axios.create({
-    baseURL: 'https://cadastro-usuarios-ws.herokuapp.com'
+  const api = context.$axios.create({
+    baseURL: context.$config.baseURL || 'https://cadastro-usuarios-ws.herokuapp.com'
   }) as NuxtAxiosInstance
 
   api.interceptors.request.use((config: AxiosRequestConfig) => {
-    config.headers['Authorization'] = `Bearer ${$cookies.get('token')}`
+    config.headers['Authorization'] = `Bearer ${context.$cookies.get('token')}`
     window.$nuxt.$loading.start()
     return config
   }, (error) => {
@@ -21,7 +21,6 @@ export default function ({ $axios, $cookies, $config }:{ $axios:any, $cookies:an
     return config
   }, (error: AxiosError) => {
     window.$nuxt.$loading.finish()
-    console.log(error.toJSON());
     if (error.message==='Network Error') {
       window.$nuxt.$emit('serverNoResponse')
     }

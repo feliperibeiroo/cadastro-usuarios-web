@@ -2,7 +2,6 @@ require('dotenv').config()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -40,7 +39,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    ['@nuxtjs/dotenv', { systemvars: true }]
   ],
 
   styleResources: {
@@ -54,7 +54,6 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
     'cookie-universal-nuxt'
   ],
 
@@ -65,6 +64,10 @@ export default {
           fs: 'empty'
       }
     }
+  },
+
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL
   },
 
   server: {
