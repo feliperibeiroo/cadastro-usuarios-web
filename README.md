@@ -1,4 +1,5 @@
 # cadastro-usuarios-web
+<img src="https://img.shields.io/badge/Vue-framework-green"> <img src="https://img.shields.io/badge/Nuxt-blue">
 
 Projeto frontend do Cadastro de Usuários.
 
