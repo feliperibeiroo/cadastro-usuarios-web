@@ -23,6 +23,6 @@ yarn dev
 Executar os seguintes comandos para subir o servidor local em ambiente de produção:
 ```
 yarn install
-yarn build
+yarn generate
 yarn start
 ```
